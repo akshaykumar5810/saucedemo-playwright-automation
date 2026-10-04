@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage.js';
 import users from '../../test-data/users.json';
 
-test.describe('Login Functionality Tests', () => {
+test.describe('Login Functionality Tests Phase 1', () => {
     const { username, password } = users.standardUser;
 
     let loginPage;
@@ -30,10 +30,10 @@ test.describe('Login Functionality Tests', () => {
             await expect(page).toHaveURL('https://www.saucedemo.com/');
         });
     test('Verify the appropriate validation message when credentials are missing.',
-        async ({page}) => {
-            await loginPage.login('','');
+        async ({ page }) => {
+            await loginPage.login('', '');
             await expect(page.getByText('Epic sadface: Username is required')).toBeVisible();
             await expect(page).toHaveURL('https://www.saucedemo.com/');
         });
-    
+
 });
