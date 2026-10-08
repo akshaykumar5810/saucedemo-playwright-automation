@@ -54,6 +54,11 @@ export class InventoryPage {
         await productLocator.getByRole('button', { name: 'Add to cart' }).click();
     }
 
+    async removeProductFromCartByName(productName) {
+        const productLocator = this.inventoryContainer.filter({ hasText: productName });
+        await productLocator.getByRole('button', { name: 'Remove' }).click();
+
+    }
     async openCart() {
         await this.page.locator('.shopping_cart_link').click();
     }
