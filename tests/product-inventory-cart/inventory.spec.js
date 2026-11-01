@@ -49,4 +49,5 @@ test.describe('Inventor Page Test Phase 2', () => {
         await inventoryPage.getProductPricesHighToLow();
         expect(inventoryPage.actualProductPrices).toEqual(inventoryPage.expectedProductPrices);
     });
+    
 });

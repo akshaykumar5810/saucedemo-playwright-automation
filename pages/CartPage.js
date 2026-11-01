@@ -4,6 +4,7 @@ export class CartPage {
         this.cartProducts = page.locator('.cart_item');
         this.cartItemNames = page.locator('.inventory_item_name');
         this.removeButtons = this.cartProducts.locator('button:has-text("Remove")');
+        this.checkoutButton = page.getByRole('Button',{name: 'Checkout'});
     }
 
     async getCartProductsCount() {
@@ -24,6 +25,10 @@ export class CartPage {
         for (let i = 0; i < removeButtonsCount; i++) {
             await this.removeButtons.nth(0).click();
         }   
+    }
+
+    async proceedToCheckout() {
+        await this.checkoutButton.click();
     }
 
 }
