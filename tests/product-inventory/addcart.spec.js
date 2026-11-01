@@ -65,6 +65,20 @@ test.describe('Add to Cart Functionality Tests Phase 2', () => {
     });
     test('Verify Cart state after removing product from cart page', async({page}) => {
         await inventoryPage.addProductToCartByName('Sauce Labs Backpack');
+        await inventoryPage.addProductToCartByName('Sauce Labs Fleece Jacket');
+        await inventoryPage.addProductToCartByName('Sauce Labs Bolt T-Shirt');
+        await inventoryPage.openCart();
+        await expect(page).toHaveURL(/cart.html/);
+        // Removing the one product from the cart page
+        await cartPage.removeProductfromCartByName('Sauce Labs Fleece Jacket');
+        // Verify updated cart count
+        await expect(cartPage.cartProducts).toHaveCount(2);
+        await expect(inventoryPage.shoppingCartBadge).toHaveText('2');
+        // Verify the remaining products in the cart
+        const remainingProducts = await cartPage.getCartItemNames();
+        expect(remainingProducts).toEqual(['Sauce Labs Backpack', 'Sauce Labs Bolt T-Shirt']);
+        // Verify the removed product is not available in the cart page.
+        await expect(cartPage.cartProducts.filter({ hasText: 'Sauce Labs Fleece Jacket' })).toHaveCount(0);
     });
 
     
