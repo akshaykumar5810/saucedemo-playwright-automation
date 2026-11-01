@@ -23,7 +23,7 @@ test.describe('Login Functionality Tests Phase 1', () => {
             await expect(page.getByText('Epic sadface: Username and password do not match any user in this service')).toBeVisible();
             await expect(page).toHaveURL('https://www.saucedemo.com/');
         });
-    test('Verify the expected locked-user error. This follows up on the test failure we encountered earlier.',
+    test('Verify the expected locked-user error.',
         async ({ page }) => {
             await loginPage.login(users.lockedUser.username, users.lockedUser.password);
             await expect(page.getByText('Epic sadface: Sorry, this user has been locked out.')).toBeVisible();
